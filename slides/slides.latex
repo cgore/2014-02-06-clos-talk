@@ -44,9 +44,9 @@
 \begin{slide}
   \h{Lisp is Cool!}
 
-  %\begin{center}
-  %  \includegraphics[height=2.75in]{mccarthy.eps}
-  %\end{center}
+  \begin{center}
+    \includegraphics[height=2.75in]{mccarthy-oop.eps}
+  \end{center}
 \end{slide}
 
 \begin{slide}
@@ -71,7 +71,7 @@
 \end{slide}
 
 \begin{slide}
-  \h{Getting Started}
+  \h{Getting Started with Common Lisp}
 
   \begin{enumerate}
     \item Install Linux.\\
