@@ -1,0 +1,94 @@
+\documentclass{seminar}
+
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{bookman}
+\usepackage{amsfonts}
+\usepackage[dvips]{pstricks}
+\usepackage{semcolor,slidesec}
+\input{seminar.bug}
+\input{seminar.bg2}
+
+
+\definecolor{fillcolor}{rgb}{0.9,0.95,1.0}
+\definecolor{linecolor}{rgb}{0.8,0.85,0.9}
+\slideframe[\psset{fillcolor=fillcolor,linecolor=linecolor}]{scshadow}
+
+\newcommand{\hc}{Blue}
+\newcommand{\h}[1]{\slideheading{\textcolor{\hc}{#1}}}
+\newcommand{\tq}[1]{\textcolor{BrickRed}{\textit{#1}}}
+
+\title{\psshadowbox{CLOS, the Common Lisp Object System}}
+\author{Christopher Mark Gore\\
+  \texttt{http://www.cgore.com}\\
+  \texttt{cgore@cgore.com}}
+\date{Thursday, February 6, AD 2014}
+
+\begin{document}
+
+\raggedslides[0mm]
+
+\begin{slide}
+  \color{\hc}
+
+  \begin{center}
+    \Huge{$\lambda$ Lounge}
+  \end{center}
+
+  \maketitle
+
+  \color{Black}
+\end{slide}
+
+\begin{slide}
+  \h{Lisp is Cool!}
+
+  %\begin{center}
+  %  \includegraphics[height=2.75in]{mccarthy.eps}
+  %\end{center}
+\end{slide}
+
+\begin{slide}
+  \h{Object-Oriented Programming is Cool!}
+\end{slide}
+
+\begin{slide}
+  \h{But, OOP isn't THE Answer}
+
+  OOP is a useful tool, but it isn't the final solution to all things programming.
+  It won't solve world hunger, but it does solve a restricted subset of the problem.
+  Other things that are sometimes useful tools, but aren't \textbf{the} answer:
+  \begin{enumerate}
+    \item FP,
+    \item Side effects or the lack thereof,
+    \item Unit tests, BDD,
+    \item Type systems,
+    \item Monads,
+    \item Your favorite thing in programming,
+    \item \sout{Lisp.}
+  \end{enumerate}
+\end{slide}
+
+\begin{slide}
+  \h{Getting Started}
+
+  \begin{enumerate}
+    \item Install Linux.\\
+      \texttt{http://aptosid.com}
+    \item Install SBCL and some libraries.\\
+      \texttt{apt-get install sbcl\{,-doc,-source\} \textbackslash \\
+        cl-\{asdf,cffi\}}
+    \item Install Emacs and SLIME \textit{(Not strictly required.)}\\
+      \texttt{apt-get install emacs\{,-goodies-el\} cl-swank \textbackslash \\
+        cl-swank slime common-lisp-controller}
+  \end{enumerate}
+\end{slide}
+
+\begin{slide}
+  \begin{center}
+    \textcolor{\hc}{\textbf{\emph{\Huge{Questions?}}}}
+  \end{center}
+\end{slide}
+
+\end{document}
