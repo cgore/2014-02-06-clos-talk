@@ -33,7 +33,7 @@
   \color{\hc}
 
   \begin{center}
-    \Huge{$\lambda$ Lounge}
+    \includegraphics[height=1.25in]{lambda-sticker-blue.eps}
   \end{center}
 
   \maketitle
