@@ -61,7 +61,7 @@
   Other things that are sometimes useful tools, but aren't \textbf{the} answer:
   \begin{enumerate}
     \item FP,
-    \item Side effects or the lack thereof,
+    \item Lack of side effects ($\alpha \rightarrow \beta \gg A \rightarrow \gamma$),
     \item Unit tests, BDD,
     \item Type systems,
     \item Monads,
