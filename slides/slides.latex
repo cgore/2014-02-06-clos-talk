@@ -42,35 +42,6 @@
 \end{slide}
 
 \begin{slide}
-  \h{Lisp is Cool!}
-
-  \begin{center}
-    \includegraphics[height=2.75in]{mccarthy-oop.eps}
-  \end{center}
-\end{slide}
-
-\begin{slide}
-  \h{Object-Oriented Programming is Cool!}
-\end{slide}
-
-\begin{slide}
-  \h{But, OOP isn't THE Answer}
-
-  OOP is a useful tool, but it isn't the final solution to all things programming.
-  It won't solve world hunger, but it does solve a restricted subset of the problem.
-  Other things that are sometimes useful tools, but aren't \textbf{the} answer:
-  \begin{enumerate}
-    \item FP,
-    \item Lack of side effects ($\alpha \rightarrow \beta \gg A \rightarrow \gamma$),
-    \item Unit tests, BDD,
-    \item Type systems,
-    \item Monads,
-    \item Your favorite thing in programming,
-    \item \sout{Lisp.}
-  \end{enumerate}
-\end{slide}
-
-\begin{slide}
   \h{Getting Started with Common Lisp}
 
   \begin{enumerate}
@@ -83,6 +54,96 @@
       \texttt{apt-get install emacs\{,-goodies-el\} cl-swank \textbackslash \\
         cl-swank slime common-lisp-controller}
   \end{enumerate}
+\end{slide}
+
+\begin{slide}
+  \h{Lisp $+$ OOP $>$ OOP $-$ Lisp}
+
+  \begin{center}
+    \includegraphics[height=2.75in]{mccarthy-oop.eps}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \h{OOP isn't \textit{The} Answer}
+
+  OOP is a useful tool, but it isn't the final solution to all things programming.
+  It won't solve world hunger, but it does solve a restricted subset of the problem.
+  Other things that are sometimes useful tools, but aren't \textbf{the} answer:
+  \begin{enumerate}
+    \item FP,
+    \item Lack of side effects,
+    \item Unit tests/TDD/BDD,
+    \item Type systems,
+    \item Monads,
+    \item Your favorite thing in programming,
+    \item \sout{Lisp.} \textit{[Yes it is.]}
+  \end{enumerate}
+\end{slide}
+
+\begin{slide}
+  \h{Nouns and Verbs}
+
+  \begin{itemize}
+    \item Nouns are how our brain works with things.\\
+      \textit{The \textbf{cat} was asleep in the \textbf{hallway}.}\\
+      \texttt{\textbf{cat[27]}.goToSleepInLocation(\textbf{hallway[3]});}
+    \item Verbs are how our brain works with actions.\\
+      \textit{He \textbf{murdered} her in cold blood!}\\
+      \texttt{(\textbf{murder-in-cold-blood} the-man the-woman)}
+  \end{itemize}
+
+  \h{Other Fun Parts of Speech \textellipsis}
+  
+  \begin{itemize}
+    \item Adjectives describe nouns.\\
+      \textit{The \textbf{big}, \textbf{old}, \textbf{yellow} house burned to the ground.}\\
+      \texttt{<house size="\textbf{big}" age="\textbf{old}" color="\textbf{yellow}"/>}
+    \item Pronouns \textit{(anaphors)} are shortcuts for nouns.\\
+      \textit{\textbf{We} walked down the street to meet \textbf{him}.}\\
+      \texttt{(a?if \textbf{him} (person-to-meet?) (go-to-meet \textbf{him}))}
+  \end{itemize}
+\end{slide}
+
+\begin{slide}
+  \h{\textellipsis Other Fun Parts of Speech}
+  
+  \begin{itemize}
+    \item Adverbs change verbs.\\
+      \textit{He \textbf{quickly} ran down the street.}
+    \item Preposition
+    \item Conjuction
+    \item Interjection
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}
+  \h{Lisp $+$ OOP $>$ Lisp?}
+
+  \textit{[Opinionated opinion:]}
+  Java or C++ style OOP doesn't help if you already have Lisp, and probably hurts,
+  but the CLOS does help if you have the right sort of problem.
+
+  \begin{itemize}
+    \item Lisp is good at modeling computation.
+    \item Functional programming is good at modeling verbs,
+    \item Object-oriented programming is good at modeling nouns.
+    \item CLOS allows FP for verbs and OOP for nouns to interact easily,
+      with neither being the \textit{\textbf{King Of All The Words}}.
+  \end{itemize}  
+\end{slide}
+
+\begin{slide}
+  \h{OOP: How Classes See Their Methods}
+
+  \begin{center}
+    \includegraphics[height=2.75in]{cat-king.eps}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \h{FP: How Functions See Data}
 \end{slide}
 
 \begin{slide}
