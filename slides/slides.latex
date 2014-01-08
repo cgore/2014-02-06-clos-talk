@@ -143,7 +143,11 @@
 \end{slide}
 
 \begin{slide}
-  \h{FP: How Functions See Data}
+  \h{FP: How Functions See Their Data}
+
+  \begin{center}
+    \includegraphics[height=2.75in]{no-evil.eps}
+  \end{center}
 \end{slide}
 
 \begin{slide}
