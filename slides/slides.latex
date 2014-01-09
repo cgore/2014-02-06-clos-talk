@@ -1,3 +1,36 @@
+% Copyright (c) 2014, Christopher Mark Gore,
+% All rights reserved.
+%
+% 2317 South River Road, Saint Charles, Missouri 63303 USA.
+% Web: http://cgore.com
+% Email: cgore@cgore.com
+%
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions are met:
+%
+%     * Redistributions of source code must retain the above copyright
+%       notice, this list of conditions and the following disclaimer.
+%
+%     * Redistributions in binary form must reproduce the above copyright
+%       notice, this list of conditions and the following disclaimer in the
+%       documentation and/or other materials provided with the distribution.
+%
+%     * Neither the name of Christopher Mark Gore nor the names of other
+%       contributors may be used to endorse or promote products derived from
+%       this software without specific prior written permission.
+%
+% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+% AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+% IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+% ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+% LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+% CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+% SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+% INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+% CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+% ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+% POSSIBILITY OF SUCH DAMAGE.
+
 \documentclass{seminar}
 
 \usepackage[normalem]{ulem}
@@ -135,6 +168,8 @@
     \item Object-oriented programming is good at modeling nouns.
     \item CLOS allows FP for verbs and OOP for nouns to interact easily,
       with neither being the \textit{\textbf{King Of All The Words}}.
+      (Cf. Steve Yegge's essay, \textit{Execution in the Kingdom of Nouns},
+      \texttt{http://steve-yegge.blogspot.com\\/2006/03/execution-in-kingdom-of-nouns.html}).
   \end{itemize}  
 \end{slide}
 
@@ -152,6 +187,113 @@
   \begin{center}
     \includegraphics[height=2.75in]{no-evil.eps}
   \end{center}
+\end{slide}
+
+\begin{slide}
+  \h{The Basic Components in CLOS}
+
+  \begin{itemize}
+    \item \textit{Classes} model nouns.
+    \item \textit{Instances} are specific occurrences of nouns.
+    \item \textit{Generics} model verbs. 
+    \item \textit{Methods} implement generics for specific classes.
+  \end{itemize}
+
+  The first two, classes, and instances, work as expected from any other normal OOP language.
+  Generics and methods work quite differently though.
+\end{slide}
+
+\begin{slide}
+  \h{\texttt{DEFCLASS}}
+
+  We define new classes with the \texttt{defclass} macro.
+
+  \texttt{(defclass \textit{class-name} (\textit{superclass-names}) (\textit{slots}))}
+
+  Some examples:
+
+\begin{verbatim}
+(defclass point () (x y))
+(defclass shape () ()) ; An abstract base class.
+(defclass rectangle (shape) (p q))
+(defclass circle (shape) (center radius))
+\end{verbatim}
+
+  We typically want to provide more for the slot definitions.
+
+\begin{verbatim}
+(defclass better-point ()
+          ((x :accessor x :initarg :x
+              :initform 0.0 :type float)
+           (y :accessor y :initarg :y
+              :initform 0.0 :type float)))
+\end{verbatim}
+\end{slide}
+
+\begin{slide}
+  \h{\texttt{MAKE-INSTANCE}}
+
+  We create new instances of a class with \texttt{make-instance}.
+  \textit{(The following examples assume more thorough slot definitions.)}
+
+\begin{verbatim}
+(let* ((origin (make-instance 'point))
+       (p1 (make-instance 'point :x 1.0 :y 12.5))
+       (p2 (make-instance 'point :x 5.0 :y 10.0))
+       (r1 (make-instance 'rectangle :p p1 :q p2))
+       (c1 (make-instance 'circle :center origin
+                                  :radius 12.5)))
+  (x p1) ; Returns 1.0
+  ; Do more stuff ... )
+\end{verbatim}
+\end{slide}
+
+\begin{slide}
+  \h{\texttt{DEFGENERIC}}
+
+  We define new generics with \texttt{defgeneric}.
+
+  \texttt{(defgeneric \textit{generic-name} \textit{lambda-list})}
+
+  Some examples:
+
+\begin{verbatim}
+(defgeneric min-x (thing))
+(defgeneric max-x (thing))
+(defgeneric min-y (thing))
+(defgeneric max-y (thing))
+(defgeneric height (thing))
+(defgeneric width (thing))
+(defgeneric area (thing))
+\end{verbatim}
+
+  These define the general layout of a set of methods all with the same name,
+  basically something similar to their ``function signature'', but don't really
+  do much else.  \textit{(SBCL will implicitly create them for you, with a warning.)}
+\end{slide}
+
+\begin{slide}
+  \h{\texttt{DEFMETHOD}}
+
+  We define new methods with \texttt{defmethod}.
+
+\begin{verbatim}
+(defmethod min-x ((r rectange))
+  (min (x (p r)) (x (q r))))
+\end{verbatim}
+
+  Implement \texttt{max-x}, \texttt{min-y}, and \texttt{max-y} in a similar manner.
+
+\begin{verbatim}
+(defmethod height ((r rectangle))
+  (- (max-y r) (min-y r))
+(defmethod width ((r rectangle))
+  (- (max-x r) (min-x r)))
+(defmethod area ((c circle))
+  (* pi (expt (radius c) 2)))
+(defmethod area ((r rectangle))
+  (* (height r) (width r)))
+\end{verbatim}
 \end{slide}
 
 \begin{slide}
