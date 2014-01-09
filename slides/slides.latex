@@ -17,7 +17,7 @@
 
 \newcommand{\hc}{Blue}
 \newcommand{\h}[1]{\slideheading{\textcolor{\hc}{#1}}}
-\newcommand{\tq}[1]{\textcolor{BrickRed}{\textit{#1}}}
+\newcommand{\tq}[1]{\textcolor{Green}{\textbf{#1}}}
 
 \title{\psshadowbox{CLOS, the Common Lisp Object System}}
 \author{Christopher Mark Gore\\
@@ -86,22 +86,22 @@
 
   \begin{itemize}
     \item Nouns are how our brain works with things.\\
-      \textit{The \textbf{cat} was asleep in the \textbf{hallway}.}\\
-      \texttt{\textbf{cat[27]}.goToSleepInLocation(\textbf{hallway[3]});}
+      \textit{The \tq{cat} was asleep in the \tq{hallway}.}\\
+      \texttt{\tq{cat[27]}.goToSleepInLocation(\tq{hallway[3]});}
     \item Verbs are how our brain works with actions.\\
-      \textit{He \textbf{murdered} her in cold blood!}\\
-      \texttt{(\textbf{murder-in-cold-blood} the-man the-woman)}
+      \textit{He \tq{murdered} her in cold blood!}\\
+      \texttt{(with-person (the-man) (\tq{murder} the-woman))}
   \end{itemize}
 
   \h{Other Fun Parts of Speech \textellipsis}
   
   \begin{itemize}
     \item Adjectives describe nouns.\\
-      \textit{The \textbf{big}, \textbf{old}, \textbf{yellow} house burned to the ground.}\\
-      \texttt{<house size="\textbf{big}" age="\textbf{old}" color="\textbf{yellow}"/>}
+      \textit{The \tq{big}, \tq{old}, \tq{yellow} house burned to the ground.}\\
+      \texttt{<house size="\tq{big}" age="\tq{old}" color="\tq{yellow}"/>}
     \item Pronouns \textit{(anaphors)} are shortcuts for nouns.\\
-      \textit{\textbf{We} walked down the street to meet \textbf{him}.}\\
-      \texttt{(a?if \textbf{him} (person-to-meet?) (go-to-meet \textbf{him}))}
+      \textit{\tq{We} walked down the street to meet \tq{him}.}\\
+      \texttt{(a?if \tq{him} (person-to-meet?) (go-to-meet \tq{him}))}
   \end{itemize}
 \end{slide}
 
@@ -110,10 +110,14 @@
   
   \begin{itemize}
     \item Adverbs change verbs.\\
-      \textit{He \textbf{quickly} ran down the street.}
-    \item Preposition
-    \item Conjuction
-    \item Interjection
+      \textit{He \tq{quickly} ran down the street.}
+    \item Prepositions links nouns and pronouns to other words.\\
+      \textit{The book is \tq{beneath} the table.}
+    \item Conjuctions link words, phrases, and clauses.\\
+      \textit{I ate the pizza \tq{and} the pasta.}\\
+      \texttt{int i = 12\tq{;} i++\tq{;}}
+    \item Interjections convey emotion.\\
+      \textit{\tq{Hey!}  Put that down!}
   \end{itemize}
   
 \end{slide}
