@@ -33,6 +33,7 @@
 
 \documentclass{seminar}
 
+\usepackage{amsmath}
 \usepackage[normalem]{ulem}
 \usepackage{graphicx}
 \usepackage[usenames,dvipsnames]{xcolor}
@@ -51,6 +52,8 @@
 \newcommand{\hc}{Blue}
 \newcommand{\h}[1]{\slideheading{\textcolor{\hc}{#1}}}
 \newcommand{\tq}[1]{\textcolor{Green}{\textbf{#1}}}
+\newcommand{\tbd}[1]{\textcolor{Blue}{\textit{#1}}}
+\newcommand{\TODO}{{\Huge \textcolor{Red}{\textbf{{TO DO}}}}}
 
 \title{\psshadowbox{CLOS, the Common Lisp Object System}}
 \author{Christopher Mark Gore\\
@@ -148,11 +151,11 @@
       \textit{The book is \tq{beneath} the table.}
     \item Conjuctions link words, phrases, and clauses.\\
       \textit{I ate the pizza \tq{and} the pasta.}\\
-      \texttt{int i = 12\tq{;} i++\tq{;}}
+      \texttt{int i = 12\tq{;} i++\tq{;}}\\
+      \texttt{v = \tq{[}1\tq{,} 2\tq{,} 14\tq{]}}
     \item Interjections convey emotion.\\
       \textit{\tq{Hey!}  Put that down!}
   \end{itemize}
-  
 \end{slide}
 
 \begin{slide}
@@ -171,6 +174,24 @@
       (Cf. Steve Yegge's essay, \textit{Execution in the Kingdom of Nouns},
       \texttt{http://steve-yegge.blogspot.com\\/2006/03/execution-in-kingdom-of-nouns.html}).
   \end{itemize}  
+\end{slide}
+
+\begin{slide}
+  \h{Ancient History}
+
+  \textbf{Flavors} (before 1982) worked on MIT Lisp Machines.
+  It introduced the concepts of multiple inheritance and mixins.
+  \tbd{(for lisp?)}
+  It used a message-passing paradigm similar to Smalltalk (before 1972).
+
+  \textbf{LOOPS} worked on Xerox's Interlisp-D.
+  
+  \textbf{CommonLoops} got LOOPS working in Common Lisp.
+
+  \textbf{New Flavors} (before 1985) introduced generic functions.
+  \tbd{(for lisp?)}
+
+  \textbf{Portable CommonLoops (PCL)} eventually developed into the first implementation of CLOS.
 \end{slide}
 
 \begin{slide}
@@ -267,9 +288,8 @@
 (defgeneric area (thing))
 \end{verbatim}
 
-  These define the general layout of a set of methods all with the same name,
-  basically something similar to their ``function signature'', but don't really
-  do much else.  \textit{(SBCL will implicitly create them for you, with a warning.)}
+  These define the general layout of a set of methods all with the same name.
+  \textit{(SBCL will implicitly create them for you, with a warning.)}
 \end{slide}
 
 \begin{slide}
@@ -294,6 +314,50 @@
 (defmethod area ((r rectangle))
   (* (height r) (width r)))
 \end{verbatim}
+\end{slide}
+
+\begin{slide}
+  \h{Multiple Inheritance}
+
+  \TODO
+\end{slide}
+
+\begin{slide}
+  \h{Multiple Dispatch}
+
+  \TODO
+\end{slide}
+
+\begin{slide}
+  \h{No Enforced Encapsulation}
+
+  \TODO
+\end{slide}
+
+\begin{slide}
+  \h{The Circle-Ellipse Problem \textellipsis}
+
+  \TODO
+\end{slide}
+
+\begin{slide}
+  \h{\textellipsis The Circle-Ellipse \textit{\sout{Problem}} Solution}
+
+  \TODO
+\end{slide}
+
+\begin{slide}
+  \h{Design Patterns $\implies$ Your Language Sucks}
+
+  \TODO
+\end{slide}
+
+\begin{slide}
+  \h{MOP: The Meta Object Protocol}
+
+  It's crazy!
+
+  Perhaps another day.
 \end{slide}
 
 \begin{slide}
