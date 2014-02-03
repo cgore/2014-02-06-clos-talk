@@ -39,12 +39,13 @@
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{bookman}
 \usepackage{amsfonts}
+\usepackage{listings}
 \usepackage[dvips]{pstricks}
 \usepackage{relsize}
 \usepackage{semcolor,slidesec}
 \input{seminar.bug}
 \input{seminar.bg2}
-
+\usepackage[normalem]{ulem}
 
 \definecolor{fillcolor}{rgb}{0.9,0.95,1.0}
 \definecolor{linecolor}{rgb}{0.8,0.85,0.9}
@@ -55,6 +56,21 @@
 \newcommand{\tq}[1]{\textcolor{Green}{\textbf{#1}}}
 \newcommand{\tbd}[1]{\textcolor{Blue}{\textit{#1}}}
 \newcommand{\TODO}{{\Huge \textcolor{Red}{\textbf{{TO DO}}}}}
+
+\definecolor{commentcolor}{rgb}{0.1,0.1,0.4}
+\definecolor{identifiercolor}{rgb}{0.2,0.2,0.2}
+\definecolor{keywordcolor}{rgb}{0.1,0.3,0.1}
+\definecolor{cexcolor}{rgb}{0.25,0.25,0.4}
+\lstset{
+  basicstyle=\small,
+  language=Lisp,
+  morekeywords={make-instance},
+  escapeinside={\%*}{*)},
+  commentstyle=\itshape\color{commentcolor},
+  identifierstyle=\color{identifiercolor},
+  keywordstyle=\color{keywordcolor}
+}
+\newcommand{\cex}[1]{\textcolor{cexcolor}{\textit{#1}}}
 
 \title{\psshadowbox{CLOS: the Common Lisp Object System}}
 \author{Christopher Mark Gore\\
@@ -68,7 +84,7 @@
 
 \raggedslides[0mm]
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \color{\hc}
 
   \begin{center}
@@ -80,7 +96,7 @@
   \color{Black}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Getting Started with Common Lisp}
 
   \begin{enumerate}
@@ -95,21 +111,22 @@
   \end{enumerate}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Lisp $+$ OOP $>$ OOP $-$ Lisp}
 
   \begin{center}
     \includegraphics[height=2.75in]{mccarthy-oop.eps}
   \end{center}
 \end{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \h{OOP isn't \uline{\textit{The}} Answer}
 
-\begin{slide}
-  \h{OOP isn't \textit{The} Answer}
+  OOP is a useful tool, but it isn't the final solution to all things
+  programming.  It won't solve world hunger, but it does solve a restricted
+  subset of the problem.  Other things that are sometimes useful tools, but
+  aren't \textbf{\textit{the}} answer:
 
-  OOP is a useful tool, but it isn't the final solution to all things programming.
-  It won't solve world hunger, but it does solve a restricted subset of the problem.
-  Other things that are sometimes useful tools, but aren't \textbf{the} answer:
-  \begin{enumerate}
+  \begin{itemize}
     \item FP,
     \item Lack of side effects,
     \item Unit tests/TDD/BDD,
@@ -117,56 +134,57 @@
     \item Monads,
     \item Your favorite thing in programming,
     \item \sout{Lisp.} \textit{[Yes it is.]}
-  \end{enumerate}
+  \end{itemize}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Nouns and Verbs}
 
-  \begin{itemize}
-    \item Nouns are how our brain works with things.\\
+  \begin{description}
+    \item[Nouns] are how our brain works with things.\\
       \textit{The \tq{cat} was asleep in the \tq{hallway}.}\\
       \texttt{\tq{cat[27]}.goToSleepInLocation(\tq{hallway[3]});}
-    \item Verbs are how our brain works with actions.\\
+    \item[Verbs] are how our brain works with actions.\\
       \textit{He \tq{murdered} her in cold blood!}\\
       \texttt{(with-person (the-man) (\tq{murder} the-woman))}
-  \end{itemize}
+  \end{description}
 
   \h{Other Fun Parts of Speech \textellipsis}
   
-  \begin{itemize}
-    \item Adjectives describe nouns.\\
+  \begin{description}
+    \item[Adjectives] describe nouns.\\
       \textit{The \tq{big}, \tq{old}, \tq{yellow} house burned to the ground.}\\
       \texttt{<house size="\tq{big}" age="\tq{old}" color="\tq{yellow}"/>}
-    \item Pronouns \textit{(anaphors)} are shortcuts for nouns.\\
+    \item[Pronouns] \textit{(anaphors)} are shortcuts for nouns.\\
       \textit{\tq{We} walked down the street to meet \tq{him}.}\\
       \texttt{(a?if \tq{him} (person-to-meet?) (go-to-meet \tq{him}))}
-  \end{itemize}
+  \end{description}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{\textellipsis\ Other Fun Parts of Speech}
   
-  \begin{itemize}
-    \item Adverbs change verbs.\\
+  \begin{description}
+    \item[Adverbs] change verbs.\\
       \textit{He \tq{quickly} ran down the street.}
-    \item Prepositions links nouns and pronouns to other words.\\
+    \item[Prepositions] links nouns and pronouns to other words.\\
       \textit{The book is \tq{beneath} the table.}
-    \item Conjuctions link words, phrases, and clauses.\\
+    \item[Conjunctions] link words, phrases, and clauses.\\
       \textit{I ate the pizza \tq{and} the pasta.}\\
       \texttt{int i = 12\tq{;} i++\tq{;}}\\
       \texttt{v = \tq{[}1\tq{,} 2\tq{,} 14\tq{]}}
-    \item Interjections convey emotion.\\
-      \textit{\tq{Hey!}  Put that down!}
-  \end{itemize}
+    \item[Interjections] convey emotion.\\
+      \textit{\tq{Hey!}  Put that down!} \\
+      \texttt{i = 0x5f3759df - (i >> 1); \tq{// wtf?}}
+  \end{description}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Lisp $+$ OOP $>$ Lisp?}
 
-  \textit{[Opinionated opinion:]}
-  Java or C++ style OOP doesn't help if you already have Lisp, and probably hurts,
-  but the CLOS does help if you have the right sort of problem.
+  \textit{[Opinionated opinion:]} Java or C++ style OOP doesn't help if you
+  already have Lisp, and probably hurts, but the CLOS does help if you have the
+  right sort of problem.
 
   \begin{itemize}
     \item Lisp is good at modeling computation.
@@ -175,29 +193,29 @@
     \item CLOS allows FP for verbs and OOP for nouns to interact easily,
       with neither being the \textit{\textbf{King Of All The Words}}.
       (Cf. Steve Yegge's essay, \textit{Execution in the Kingdom of Nouns},
-      \texttt{http://steve-yegge.blogspot.com\\/2006/03/execution-in-kingdom-of-nouns.html}).
+      \texttt{http://steve-yegge.blogspot.com\\
+        /2006/03/execution-in-kingdom-of-nouns.html}).
   \end{itemize}  
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Ancient History}
 
-  \textbf{Flavors} (before 1982) worked on MIT Lisp Machines.
-  It introduced the concepts of multiple inheritance and mixins.
-  \tbd{(for lisp?)}
-  It used a message-passing paradigm similar to Smalltalk (before 1972).
-
-  \textbf{LOOPS} worked on Xerox's Interlisp-D.
-  
-  \textbf{CommonLoops} got LOOPS working in Common Lisp.
-
-  \textbf{New Flavors} (before 1985) introduced generic functions.
-  \tbd{(for lisp?)}
-
-  \textbf{Portable CommonLoops (PCL)} eventually developed into the first implementation of CLOS.
+  \begin{description}
+    \item[Flavors] (before 1982) worked on MIT Lisp Machines.
+      It introduced the concepts of multiple inheritance and mixins.
+      \tbd{(for lisp?)}
+      It used a message-passing paradigm similar to Smalltalk (before 1972).
+    \item[LOOPS] worked on Xerox's Interlisp-D.
+    \item[CommonLoops] got LOOPS working in Common Lisp.
+    \item[New Flavors] (before 1985) introduced generic functions.
+      \tbd{(for lisp?)}
+    \item[Portable CommonLoops (PCL)]
+      eventually developed into the first implementation of CLOS.
+  \end{description}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{OOP: How Classes See Their Methods}
 
   \begin{center}
@@ -213,49 +231,51 @@
   \end{center}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{The Basic Components in CLOS}
 
-  \begin{itemize}
-    \item \textit{Classes} model nouns.
-    \item \textit{Instances} are specific occurrences of nouns.
-    \item \textit{Generics} model verbs. 
-    \item \textit{Methods} implement generics for specific classes.
-  \end{itemize}
+  \begin{description}
+    \item[Classes] model nouns.
+    \item[Instances] are specific occurrences of nouns.
+    \item[Generics] model verbs. 
+    \item[Methods] implement generics for specific classes.
+  \end{description}
 
-  The first two, classes, and instances, work as expected from any other normal OOP language.
-  Generics and methods work quite differently though.
+  The first two, classes, and instances, work as expected from any other normal
+  OOP language.  Generics and methods work quite differently though.
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{\texttt{DEFCLASS}}
 
   We define new classes with the \texttt{defclass} macro.
 
-  \texttt{(defclass \textit{class-name} (\textit{superclass-names}) (\textit{slots}))}
+\begin{lstlisting}
+(defclass %*\cex{class-name}*) (%*\cex{superclass-names}*)) (%*\cex{slots}*)))
+\end{lstlisting}
 
   Some examples:
 
-\begin{verbatim}
+\begin{lstlisting}
 (defclass point () (x y))
 (defclass shape () ()) ; An abstract base class.
 (defclass rectangle (shape) (p q))
 (defclass circle (shape) (center radius))
-\end{verbatim}
+\end{lstlisting}
 
   We typically want to provide more for the slot definitions.
 
-\begin{verbatim}
+\begin{lstlisting}
 (defclass better-point ()
-          ((x :accessor x :initarg :x
-              :initform 0.0 :type float)
-           (y :accessor y :initarg :y
-              :initform 0.0 :type float)))
-\end{verbatim}
+          ((x :accessor x :initarg :x :initform 0.0
+              :type float)
+           (y :accessor y :initarg :y :initform 0.0
+              :type float)))
+\end{lstlisting}
 \end{slide}
 
-\begin{slide}
-  \h{DEFCLASS Slot Definition Options}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \h{\texttt{DEFCLASS} Slot Definition Options}
 
   All of these are optional.
   This is \textbf{\textit{not a hash map}},
@@ -276,34 +296,36 @@
   \end{description}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{\texttt{MAKE-INSTANCE}}
 
   We create new instances of a class with \texttt{make-instance}.
   \textit{(The following examples assume more thorough slot definitions.)}
 
-\begin{verbatim}
-(let* ((origin (make-instance 'point))
-       (p1 (make-instance 'point :x 1.0 :y 12.5))
-       (p2 (make-instance 'point :x 5.0 :y 10.0))
-       (r1 (make-instance 'rectangle :p p1 :q p2))
-       (c1 (make-instance 'circle :center origin
-                                  :radius 12.5)))
-  (x p1) ; Returns 1.0
-  ; Do more stuff ... )
-\end{verbatim}
+\begin{lstlisting}
+(let* ((o (make-instance 'point)) ; Defaults to (0,0)
+       (p (make-instance 'point :x 1.0 :y 12.5))
+       (q (make-instance 'point :x 5.0 :y 10.0))
+       (r (make-instance 'rectangle :p p :q q))
+       (c (make-instance 'circle
+                         :center o :radius 12.5)))
+  (x p) ; Returns 1.0
+  %* \cex{\textellipsis\ Do more stuff \textellipsis}*) )
+\end{lstlisting}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{\texttt{DEFGENERIC}}
 
   We define new generics with \texttt{defgeneric}.
 
-  \texttt{(defgeneric \textit{generic-name} \textit{lambda-list})}
+\begin{lstlisting}
+(defgeneric %*\cex{generic-name}*) %*\cex{lambda-list}*))
+\end{lstlisting}
 
   Some examples:
 
-\begin{verbatim}
+\begin{lstlisting}
 (defgeneric min-x (thing))
 (defgeneric max-x (thing))
 (defgeneric min-y (thing))
@@ -311,25 +333,25 @@
 (defgeneric height (thing))
 (defgeneric width (thing))
 (defgeneric area (thing))
-\end{verbatim}
+\end{lstlisting}
 
   These define the general layout of a set of methods all with the same name.
   \textit{(SBCL will implicitly create them for you, with a warning.)}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{\texttt{DEFMETHOD}}
 
   We define new methods with \texttt{defmethod}.
 
-\begin{verbatim}
+\begin{lstlisting}
 (defmethod min-x ((r rectange))
   (min (x (p r)) (x (q r))))
-\end{verbatim}
+\end{lstlisting}
 
   Implement \texttt{max-x}, \texttt{min-y}, and \texttt{max-y} in a similar manner.
 
-\begin{verbatim}
+\begin{lstlisting}
 (defmethod height ((r rectangle))
   (- (max-y r) (min-y r))
 (defmethod width ((r rectangle))
@@ -338,18 +360,16 @@
   (* pi (expt (radius c) 2)))
 (defmethod area ((r rectangle))
   (* (height r) (width r)))
-
-\end{verbatim}
+\end{lstlisting}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Multiple Inheritance \textellipsis}
 
-  CLOS supports multiple inheritance, like C++ or Python.
-  Java and Ruby \textit{don't} have this, and I miss it.
+  CLOS supports multiple inheritance, like C++ or Python.  Java and Ruby
+  \textit{don't} have this, and I miss it when it isn't there.
 
-
-\begin{verbatim}
+\begin{lstlisting}
 (defclass animal () ())
 
 (defclass swimming-animal (animal) ())
@@ -357,17 +377,18 @@
 
 (defclass winged-animal (animal) ())
 (defclass bird (winged-animal) ())
+(defclass penguin (bird swimming-animal) ())
 
 (defclass mammal (animal) ())
 (defclass whale (swimming-animal mammal) ())
 (defclass bat (winged-animal mammal) ())
-\end{verbatim}  
+\end{lstlisting}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{\textellipsis\ Multiple Inheritance}
 
-\begin{verbatim}
+\begin{lstlisting}
 (defclass device () ())
 
 (defclass computer (device) ())
@@ -379,61 +400,115 @@
 (defclass fax (device) ())
 
 (defclass all-in-one (printer scanner fax) ())
-\end{verbatim}
+\end{lstlisting}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{So Why is This Better than C++?}
 
   \TODO
 \end{slide}
 
-\begin{slide}
-  \h{Multiple Dispatch, OOP Without the Self}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \h{Multiple Dispatch: OOP Without the Self}
 
+\begin{center}
   \textit{``The self is a relation which relates itself to its own self,\\
     or it is that in the relation\\
     that the relation relates itself to its own self;\\
     the self is not the relation\\
     but that the relation relates itself to its own self.''}
+\end{center}
 
 \begin{flushright}
   --- S\o ren Kierkegaard.
 \end{flushright}
 
+Single dispatch OOP assumes their is some special thing, the \texttt{self} or
+\texttt{this}.  You can do this in CLOS too, by only specializing on the first
+argument to the methods, but then you are missing one of the best features of
+the CLOS.
+
+\begin{lstlisting}
+(defmethod foo ((this square) x y) %*\cex{\textellipsis}*))
+\end{lstlisting}
+\begin{lstlisting}[language=C]
+my_square.foo(x, y); // But what about x and y?
+\end{lstlisting}
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \h{Let's Play a Game \textellipsis}
+
+  We can specialize on the classes of \textbf{\textit{every argument}}.
+
+\begin{lstlisting}[basicstyle=\smaller]
+(defclass rock     () ())
+(defclass paper    () ())
+(defclass scissors () ())
+(defclass lizard   () ())
+(defclass spock    () ())
+
+(defgeneric play (a b))
+(defmethod play (a b)
+  (play b a)) ; Switch if no match.
+
+(defmethod play ((a rock)     (b rock))     'tie)
+(defmethod play ((a paper)    (b paper))    'tie)
+(defmethod play ((a scissors) (b scissors)) 'tie)
+(defmethod play ((a lizard)   (b lizard))   'tie)
+(defmethod play ((a spock)    (b spock))    'tie)
+\end{lstlisting}
+\end{slide}
+
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \h{\textellipsis\ Let's Play a Game}
+
+\begin{lstlisting}
+(defmethod play ((r  rock)     (sz scissors)) 'rock)
+(defmethod play ((p  paper)    (sz scissors)) 'scissors)
+(defmethod play ((r  rock)     (p  paper))    'paper)
+(defmethod play ((r  rock)     (l  lizard))   'rock)
+(defmethod play ((l  lizard)   (sp spock))    'spock)
+(defmethod play ((sp spock)    (sz scissors)) 'spock)
+(defmethod play ((sz scissors) (l  lizard))   'scissors)
+(defmethod play ((l  lizard)   (p  paper))    'lizard)
+(defmethod play ((p  paper)    (sp spock))    'paper)
+(defmethod play ((sp spock)    (r  rock))     'spock)
+\end{lstlisting}
+\end{slide}
+
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{No Enforced Encapsulation}
 
   \TODO
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Lambdas in Slots}
 
   \TODO
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{The Circle-Ellipse Problem \textellipsis}
 
   \TODO
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{\textellipsis\ The Circle-Ellipse \textit{\sout{Problem}} Solution}
 
   \TODO
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Design Patterns $\implies$ Your Language Sucks}
 
   \TODO
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{MOP: The Meta Object Protocol}
 
   The CLOS is implemented in it.
@@ -443,7 +518,7 @@
   Perhaps another day.
 \end{slide}
 
-\begin{slide}
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \begin{center}
     \textcolor{\hc}{\textbf{\emph{\Huge{Questions?}}}}
   \end{center}
