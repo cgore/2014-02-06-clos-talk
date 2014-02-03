@@ -255,6 +255,28 @@
 \end{slide}
 
 \begin{slide}
+  \h{DEFCLASS Slot Definition Options}
+
+  All of these are optional.
+  This is \textbf{\textit{not a hash map}},
+  and some allow for multiple definitions.
+
+  \begin{description}
+    \item[:reader] Defines a default getter for the slot.
+    \item[:writer] Defines a default setter for the slot.
+    \item[:accessor] Defines both a default getter and a default setter.
+    \item[:allocation] Either \texttt{:instance} for per-instance slots
+      (this is the default) or \texttt{:class} for per-class slots.
+    \item[:initarg]
+      This is a symbol to specify an initial value when you call
+      \texttt{make-instance}.
+    \item[:initform] This is the default value at instantiation.
+    \item[:type] This can be any valid type specifier.
+    \item[:documentation] \textit{But I thought code documents itself?}
+  \end{description}
+\end{slide}
+
+\begin{slide}
   \h{\texttt{MAKE-INSTANCE}}
 
   We create new instances of a class with \texttt{make-instance}.
@@ -326,6 +348,12 @@
 \end{slide}
 
 \begin{slide}
+  \h{So Why is This Better than C++?}
+
+  \TODO
+\end{slide}
+
+\begin{slide}
   \h{Multiple Dispatch}
 
   \TODO
@@ -333,6 +361,12 @@
 
 \begin{slide}
   \h{No Enforced Encapsulation}
+
+  \TODO
+\end{slide}
+
+\begin{slide}
+  \h{Lambdas in Slots}
 
   \TODO
 \end{slide}
@@ -357,6 +391,8 @@
 
 \begin{slide}
   \h{MOP: The Meta Object Protocol}
+
+  The CLOS is implemented in it.
 
   It's crazy!
 
