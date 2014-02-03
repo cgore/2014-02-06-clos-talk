@@ -40,6 +40,7 @@
 \usepackage{bookman}
 \usepackage{amsfonts}
 \usepackage[dvips]{pstricks}
+\usepackage{relsize}
 \usepackage{semcolor,slidesec}
 \input{seminar.bug}
 \input{seminar.bg2}
@@ -55,11 +56,13 @@
 \newcommand{\tbd}[1]{\textcolor{Blue}{\textit{#1}}}
 \newcommand{\TODO}{{\Huge \textcolor{Red}{\textbf{{TO DO}}}}}
 
-\title{\psshadowbox{CLOS, the Common Lisp Object System}}
+\title{\psshadowbox{CLOS: the Common Lisp Object System}}
 \author{Christopher Mark Gore\\
   \texttt{http://www.cgore.com}\\
-  \texttt{cgore@cgore.com}}
-\date{Thursday, February 6, AD 2014}
+  \texttt{cgore@cgore.com}\\
+  \raisebox{-2pt}{\includegraphics[height=10pt]{twitter-logo.eps}}
+  \texttt{@cgore}}
+\date{Thursday, February 6, {\smaller AD} 2014}
 
 \begin{document}
 
