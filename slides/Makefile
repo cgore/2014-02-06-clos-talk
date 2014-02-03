@@ -2,7 +2,7 @@ NAME=slides
 
 all: $(NAME).dvi $(NAME).ps $(NAME).pdf
 
-$(NAME).dvi: $(NAME).latex
+$(NAME).dvi: $(NAME).latex *.eps
 	latex $(NAME).latex
 
 $(NAME).ps: $(NAME).dvi

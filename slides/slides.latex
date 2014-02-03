@@ -145,7 +145,7 @@
 \end{slide}
 
 \begin{slide}
-  \h{\textellipsis Other Fun Parts of Speech}
+  \h{\textellipsis\ Other Fun Parts of Speech}
   
   \begin{itemize}
     \item Adverbs change verbs.\\
@@ -338,13 +338,48 @@
   (* pi (expt (radius c) 2)))
 (defmethod area ((r rectangle))
   (* (height r) (width r)))
+
 \end{verbatim}
 \end{slide}
 
 \begin{slide}
-  \h{Multiple Inheritance}
+  \h{Multiple Inheritance \textellipsis}
 
-  \TODO
+  CLOS supports multiple inheritance, like C++ or Python.
+  Java and Ruby \textit{don't} have this, and I miss it.
+
+
+\begin{verbatim}
+(defclass animal () ())
+
+(defclass swimming-animal (animal) ())
+(defclass fish (swimming-animal) ())
+
+(defclass winged-animal (animal) ())
+(defclass bird (winged-animal) ())
+
+(defclass mammal (animal) ())
+(defclass whale (swimming-animal mammal) ())
+(defclass bat (winged-animal mammal) ())
+\end{verbatim}  
+\end{slide}
+
+\begin{slide}
+  \h{\textellipsis\ Multiple Inheritance}
+
+\begin{verbatim}
+(defclass device () ())
+
+(defclass computer (device) ())
+(defclass desktop (computer) ())
+(defclass laptop (computer) ())
+
+(defclass printer (device) ())
+(defclass scanner (device) ())
+(defclass fax (device) ())
+
+(defclass all-in-one (printer scanner fax) ())
+\end{verbatim}
 \end{slide}
 
 \begin{slide}
@@ -354,9 +389,18 @@
 \end{slide}
 
 \begin{slide}
-  \h{Multiple Dispatch}
+  \h{Multiple Dispatch, OOP Without the Self}
 
-  \TODO
+  \textit{``The self is a relation which relates itself to its own self,\\
+    or it is that in the relation\\
+    that the relation relates itself to its own self;\\
+    the self is not the relation\\
+    but that the relation relates itself to its own self.''}
+
+\begin{flushright}
+  --- S\o ren Kierkegaard.
+\end{flushright}
+
 \end{slide}
 
 \begin{slide}
@@ -378,7 +422,7 @@
 \end{slide}
 
 \begin{slide}
-  \h{\textellipsis The Circle-Ellipse \textit{\sout{Problem}} Solution}
+  \h{\textellipsis\ The Circle-Ellipse \textit{\sout{Problem}} Solution}
 
   \TODO
 \end{slide}
