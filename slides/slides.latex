@@ -118,6 +118,26 @@
     \includegraphics[height=2.75in]{mccarthy-oop.eps}
   \end{center}
 \end{slide}
+
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \h{Lisp $+$ OOP $>$ Lisp?}
+
+  \textit{[Opinionated opinion:]} Java or C++ style OOP doesn't help if you
+  already have Lisp, and probably hurts, but the CLOS does help if you have the
+  right sort of problem.
+
+  \begin{itemize}
+    \item Lisp is good at modeling computation.
+    \item Functional programming is good at modeling verbs,
+    \item Object-oriented programming is good at modeling nouns.
+    \item CLOS allows FP for verbs and OOP for nouns to interact easily,
+      with neither being the \textit{\textbf{King Of All The Words}}.
+      (Cf. Steve Yegge's essay, \textit{Execution in the Kingdom of Nouns},
+      \texttt{http://steve-yegge.blogspot.com\\
+        /2006/03/execution-in-kingdom-of-nouns.html}).
+  \end{itemize}  
+\end{slide}
+
 \begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{OOP isn't \uline{\textit{The}} Answer}
 
@@ -129,12 +149,29 @@
   \begin{itemize}
     \item FP,
     \item Lack of side effects,
-    \item Unit tests/TDD/BDD,
+    \item Unit tests/TDD/BDD/\textbf{EXTREME PROGRAMMING!},
     \item Type systems,
     \item Monads,
     \item Your favorite thing in programming,
     \item \sout{Lisp.} \textit{[Yes it is.]}
   \end{itemize}
+\end{slide}
+
+\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \h{Ancient History}
+
+  \begin{description}
+    \item[Flavors] (before 1982) worked on MIT Lisp Machines.
+      It introduced the concepts of multiple inheritance and mixins.
+      \tbd{(for lisp?)}
+      It used a message-passing paradigm similar to Smalltalk (before 1972).
+    \item[LOOPS] worked on Xerox's Interlisp-D.
+    \item[CommonLoops] got LOOPS working in Common Lisp.
+    \item[New Flavors] (before 1985) introduced generic functions.
+      \tbd{(for lisp?)}
+    \item[Portable CommonLoops (PCL)]
+      eventually developed into the first implementation of CLOS.
+  \end{description}
 \end{slide}
 
 \begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -176,42 +213,6 @@
     \item[Interjections] convey emotion.\\
       \textit{\tq{Hey!}  Put that down!} \\
       \texttt{i = 0x5f3759df - (i >> 1); \tq{// wtf?}}
-  \end{description}
-\end{slide}
-
-\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \h{Lisp $+$ OOP $>$ Lisp?}
-
-  \textit{[Opinionated opinion:]} Java or C++ style OOP doesn't help if you
-  already have Lisp, and probably hurts, but the CLOS does help if you have the
-  right sort of problem.
-
-  \begin{itemize}
-    \item Lisp is good at modeling computation.
-    \item Functional programming is good at modeling verbs,
-    \item Object-oriented programming is good at modeling nouns.
-    \item CLOS allows FP for verbs and OOP for nouns to interact easily,
-      with neither being the \textit{\textbf{King Of All The Words}}.
-      (Cf. Steve Yegge's essay, \textit{Execution in the Kingdom of Nouns},
-      \texttt{http://steve-yegge.blogspot.com\\
-        /2006/03/execution-in-kingdom-of-nouns.html}).
-  \end{itemize}  
-\end{slide}
-
-\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \h{Ancient History}
-
-  \begin{description}
-    \item[Flavors] (before 1982) worked on MIT Lisp Machines.
-      It introduced the concepts of multiple inheritance and mixins.
-      \tbd{(for lisp?)}
-      It used a message-passing paradigm similar to Smalltalk (before 1972).
-    \item[LOOPS] worked on Xerox's Interlisp-D.
-    \item[CommonLoops] got LOOPS working in Common Lisp.
-    \item[New Flavors] (before 1985) introduced generic functions.
-      \tbd{(for lisp?)}
-    \item[Portable CommonLoops (PCL)]
-      eventually developed into the first implementation of CLOS.
   \end{description}
 \end{slide}
 
