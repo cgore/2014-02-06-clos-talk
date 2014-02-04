@@ -424,7 +424,7 @@
   --- S\o ren Kierkegaard.
 \end{flushright}
 
-Single dispatch OOP assumes their is some special thing, the \texttt{self} or
+Single dispatch OOP assumes there is some special thing, the \texttt{self} or
 \texttt{this}.  You can do this in CLOS too, by only specializing on the first
 argument to the methods, but then you are missing one of the best features of
 the CLOS.
@@ -481,13 +481,37 @@ my_square.foo(x, y); // But what about x and y?
 \begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{No Enforced Encapsulation}
 
-  \TODO
+\begin{lstlisting}
+(defclass sphere ()
+  ((x :initarg :x)
+   (y :initarg :y)
+   (z :initarg :z)
+   (r :initarg :r)) ; No accessors defined!
+(let ((s1 (make-instance 'sphere
+            :x 12.66 :y 16.07 :z 22.01 :r 14.70)))
+  (setf (slot-value s1 'radius) ; That was easy.
+        (* 2.7 (slot-value s1 'x))))
+\end{lstlisting}
 \end{slide}
 
 \begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Lambdas in Slots}
 
-  \TODO
+  You won't typically do this for code you write, but the code your code writes
+  might like to do something similar.
+
+\begin{lstlisting}
+(defclass j ()
+  ((x :accessor x :initarg :x :initform 0.0 :type float)
+   (y :accessor y :initarg :y :initform 0.0 :type float)
+   (f :initform (lambda (this z)
+                  (expt (+ (x this) (y this)) z)))))
+(defgeneric f (this z))
+(defmethod f ((this j) z)
+  (funcall (slot-value this 'f) this z))
+(let ((j1 (make-instance 'j :x 12 :y 33)))
+  (f j1 7)) ; Returns 373,669,453,125.
+\end{lstlisting}
 \end{slide}
 
 \begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
