@@ -404,12 +404,6 @@
 \end{slide}
 
 \begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \h{So Why is This Better than C++?}
-
-  \TODO
-\end{slide}
-
-\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \h{Multiple Dispatch: OOP Without the Self}
 
 \begin{center}
@@ -512,24 +506,6 @@ my_square.foo(x, y); // But what about x and y?
 (let ((j1 (make-instance 'j :x 12 :y 33)))
   (f j1 7)) ; Returns 373,669,453,125.
 \end{lstlisting}
-\end{slide}
-
-\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \h{The Circle-Ellipse Problem \textellipsis}
-
-  \TODO
-\end{slide}
-
-\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \h{\textellipsis\ The Circle-Ellipse \textit{\sout{Problem}} Solution}
-
-  \TODO
-\end{slide}
-
-\begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \h{Design Patterns $\implies$ Your Language Sucks}
-
-  \TODO
 \end{slide}
 
 \begin{slide} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
